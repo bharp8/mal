@@ -1,29 +1,25 @@
-import mal_readline
+from inspect import EndOfBlock
 
 
-def read(source: str) -> str:
-    return source
+def READ[T](readIn: T) -> T:
+    return readIn
 
+def EVAL[T](evalIn: T) -> T:
+    return evalIn
 
-def eval_(ast: str) -> str:
-    return ast
+def PRINT[T](printIn: T) -> T:
+    return printIn
 
+def rep[T](funcIn: T) -> T:
+    return PRINT(EVAL(READ(funcIn))) 
 
-def print_(form: str) -> str:
-    return form
-
-
-def rep(source: str) -> str:
-    return print_(eval_(read(source)))
-
-
-def main() -> None:
-    while True:
+def main():
+    while(True):
         try:
-            print(rep(mal_readline.input_('user> ')))
+            print(rep(input("user> ")))
         except EOFError:
             break
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
+
